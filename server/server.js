@@ -4,10 +4,11 @@ const app = express()
 const User = require("./model/User")
 const Ideas = require("./model/Ideas")
 const cors = require("cors")
-const MONGO_DB_URI = "mongodb+srv://rakesh:rakesh@cluster0.87z7u4l.mongodb.net/?retryWrites=true&w=majority"
 const jwt = require('jsonwebtoken')
 const Chat = require("./model/Chat")
-
+require('dotenv').config()
+const PORT = process.env.PORT || 5000
+const MONGO_DB_URI = process.env.MONGO_DB;
 app.use(cors())
 app.use(express.json())
 
@@ -184,4 +185,4 @@ app.put("/api/idea/edit/:id", async (req,res)=>{
     res.json({status: 'ok'})
 })
 
-app.listen(5000, () => {console.log("Listening...") });
+app.listen(PORT, () => {console.log("Listening...") });
